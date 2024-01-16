@@ -4,6 +4,7 @@ import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 import { AccountProfile } from "src/sections/account/account-profile";
 import { AccountProfileDetails } from "src/sections/account/account-profile-details-edit";
 import { useRouter } from "next/router";
+import { Divider } from "@mui/material";
 
 const Page = () => {
   const router = useRouter();
@@ -25,6 +26,10 @@ const Page = () => {
           <Stack spacing={3}>
             <div>
               <Typography variant="h4">Update Order</Typography>
+              <Divider />
+              <Typography variant="subtitle2" style={{ marginTop: "5px" }}>
+                TRACKING ID : {`${id}`}
+              </Typography>
             </div>
             <div>
               <Grid container spacing={3}>

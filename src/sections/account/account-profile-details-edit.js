@@ -549,11 +549,11 @@ export const AccountProfileDetails = ({ id }) => {
         <CardActions sx={{ justifyContent: "flex-end" }}>
           {loading ? (
             <LoadingButton variant="contained" loading>
-              Save details
+              Update details
             </LoadingButton>
           ) : (
             <Button variant="contained" type="submit">
-              Save details
+              Update details
             </Button>
           )}
         </CardActions>
