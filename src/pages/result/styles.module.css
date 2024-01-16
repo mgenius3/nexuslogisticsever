@@ -1,0 +1,15 @@
+.printContent {
+  /* display: block; */
+  margin: 20px 0px;
+  background-color: rgb(235, 249, 244);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px solid;
+}
+@media print {
+  .printContent {
+    display: none;
+  }
+
+  /* Optionally, you can hide other elements on print */
+}
