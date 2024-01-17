@@ -120,7 +120,7 @@ export const CustomersTable = (props) => {
                         <Typography variant="subtitle2">{customer.name}</Typography>
                       </Stack>
                     </TableCell>
-                    <TableCell>{customer.id.toString().toUpperCase()}</TableCell>
+                    <TableCell>{customer.id}</TableCell>
                     <TableCell>{customer.email}</TableCell>
                     <TableCell>{customer?.address}</TableCell>
                     <TableCell>{customer?.status}</TableCell>
@@ -134,7 +134,7 @@ export const CustomersTable = (props) => {
       </Scrollbar>
       <TablePagination
         component="div"
-        count={count}
+        count={items.length}
         onPageChange={onPageChange}
         onRowsPerPageChange={onRowsPerPageChange}
         page={page}

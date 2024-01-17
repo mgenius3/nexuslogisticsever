@@ -36,8 +36,8 @@ const UserProfile = () => {
     const fetchData = async () => {
       try {
         // Assuming 'users' is your Firestore collection name
-        const new_id = id.toLowerCase();
-        const userDoc = await getDoc(doc(firestore, "users", new_id));
+
+        const userDoc = await getDoc(doc(firestore, "users", id));
 
         if (userDoc.exists()) {
           console.log(userDoc.data());
