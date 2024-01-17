@@ -1,10 +1,11 @@
 .printContent {
   /* display: block; */
   margin: 20px 0px;
-  background-color: rgb(235, 249, 244);
+  background-color: rgb(85, 211, 167);
   border: none;
   padding: 10px 20px;
   border-radius: 5px solid;
+  color: black;
 }
 @media print {
   .printContent {

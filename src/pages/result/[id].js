@@ -19,11 +19,14 @@ import {
 } from "@mui/material";
 
 import styles from "./styles.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UserProfile = () => {
   const router = useRouter();
   const { id } = router.query;
   const [userData, setUserData] = useState(null);
+  const [statemessage, setStateMessage] = useState("loading");
 
   const handlePrint = () => {
     window.print();
@@ -33,16 +36,17 @@ const UserProfile = () => {
     const fetchData = async () => {
       try {
         // Assuming 'users' is your Firestore collection name
-        const userDoc = await getDoc(doc(firestore, "users", id));
+        const new_id = id.toLowerCase();
+        const userDoc = await getDoc(doc(firestore, "users", new_id));
 
         if (userDoc.exists()) {
           console.log(userDoc.data());
           setUserData(userDoc.data());
         } else {
-          console.error("User not found");
+          setStateMessage("User not found");
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        setStateMessage("Error fetching data:", error);
       }
     };
 
@@ -269,7 +273,7 @@ const UserProfile = () => {
           </Grid>
         </Container>
       ) : (
-        <p>Loading...</p>
+        <p>{statemessage}</p>
       )}
     </div>
   );
