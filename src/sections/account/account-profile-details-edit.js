@@ -440,15 +440,17 @@ export const AccountProfileDetails = ({ id }) => {
                   name="status"
                   onChange={handleChange}
                   required
-                  select
-                  SelectProps={{ native: true }}
-                >
-                  {status.map((option) => (
+                  placeholder={values.status}
+
+                  // select
+                  // SelectProps={{ native: true }}
+                />
+                {/* {status.map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.helperText}
                     </option>
                   ))}
-                </TextField>
+                </TextField> */}
               </Grid>
 
               <Grid xs={12} md={6}>
