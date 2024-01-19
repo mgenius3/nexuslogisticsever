@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { firestore, doc, getDoc } from "../../config/index";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import GoogleMapComponent from "./map";
 import {
   Box,
   Button,
@@ -27,6 +29,7 @@ const UserProfile = () => {
   const { id } = router.query;
   const [userData, setUserData] = useState(null);
   const [statemessage, setStateMessage] = useState("loading");
+  const [mapData, setMapData] = useState();
 
   const handlePrint = () => {
     window.print();
@@ -40,8 +43,11 @@ const UserProfile = () => {
         const userDoc = await getDoc(doc(firestore, "users", id));
 
         if (userDoc.exists()) {
-          console.log(userDoc.data());
           setUserData(userDoc.data());
+
+          setMapData([
+            { position: { lat: userDoc.data().lat, lng: userDoc.data().lng } }, // Example marker data
+          ]);
         } else {
           setStateMessage("User not found");
         }
@@ -271,6 +277,20 @@ const UserProfile = () => {
               <Typography variant="subtitle2">{userData?.location}</Typography>
             </Grid>
           </Grid>
+          <br />
+          <Grid xs={12}>
+            <Typography variant="h6" component="h6">
+              Shipment location
+            </Typography>
+            <Divider style={dividerStyle} />
+          </Grid>
+
+          <GoogleMapComponent
+            center={{ lat: userData.lat, lng: userData.lng }}
+            zoom={10}
+            markers={mapData}
+          />
+          <br />
         </Container>
       ) : (
         <p>{statemessage}</p>

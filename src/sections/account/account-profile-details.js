@@ -516,6 +516,35 @@ export const AccountProfileDetails = ({ id }) => {
                   // value={values.country}
                 />
               </Grid>
+              <Grid xs={12} md={6}>
+                <TextField
+                  // id="outlined-basic"
+                  //
+                  fullWidth
+                  helperText="shipment location (latitude)"
+                  name="lat"
+                  onChange={handleChange}
+                  required
+                  type="number"
+
+                  // value={values.country}
+                />
+              </Grid>
+
+              <Grid xs={12} md={6}>
+                <TextField
+                  // id="outlined-basic"
+                  //
+                  fullWidth
+                  helperText="shipment location (longitude)"
+                  name="lng"
+                  onChange={handleChange}
+                  required
+                  type="number"
+
+                  // value={values.country}
+                />
+              </Grid>
             </Grid>
           </Box>
           <ToastContainer />
