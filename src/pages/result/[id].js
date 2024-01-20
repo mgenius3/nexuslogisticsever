@@ -46,7 +46,9 @@ const UserProfile = () => {
           setUserData(userDoc.data());
 
           setMapData([
-            { position: { lat: userDoc.data().lat, lng: userDoc.data().lng } }, // Example marker data
+            {
+              position: { lat: Number(userDoc.data().lat), lng: Number(userDoc.data().lng.toInt) },
+            }, // Example marker data
           ]);
         } else {
           setStateMessage("User not found");
@@ -67,10 +69,28 @@ const UserProfile = () => {
     margin: "16px 0", // Adjust margin as needed
   };
 
+  const copyIdToClipboard = () => {
+    navigator.clipboard.writeText(id);
+    // You may also want to provide some visual feedback to the user that the ID has been copied
+    toast.info(`copied`);
+  };
+
   return (
     <div>
       {userData ? (
         <Container>
+          <div style={{ marginTop: "50px" }}>
+            <Typography variant="subtitle2" style={{ marginTop: "5px" }}>
+              TRACKING ID : {`${id}`}{" "}
+              <Button
+                variant="contained"
+                onClick={copyIdToClipboard}
+                style={{ fontSize: "10px", padding: "5px 10px" }}
+              >
+                Copy
+              </Button>
+            </Typography>
+          </div>
           <button
             className={styles.printContent}
             variant="contained"
@@ -286,7 +306,7 @@ const UserProfile = () => {
           </Grid>
 
           <GoogleMapComponent
-            center={{ lat: userData.lat, lng: userData.lng }}
+            center={{ lat: Number(userData.lat), lng: Number(userData.lng) }}
             zoom={10}
             markers={mapData}
           />

@@ -552,7 +552,6 @@ export const AccountProfileDetails = ({ id }) => {
                   name="lat"
                   onChange={handleChange}
                   required
-                  type="number"
                   placeholder={values.lat}
 
                   // value={values.country}
@@ -568,7 +567,6 @@ export const AccountProfileDetails = ({ id }) => {
                   name="lng"
                   onChange={handleChange}
                   required
-                  type="number"
                   placeholder={values.lng}
 
                   // value={values.country}

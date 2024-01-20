@@ -14,12 +14,13 @@ import {
   TablePagination,
   TableRow,
   Typography,
+  Button,
 } from "@mui/material";
 import Link from "next/link";
 import { Scrollbar } from "src/components/scrollbar";
 import { getInitials } from "src/utils/get-initials";
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { firestore } from "../../config/index";
 
 export const CustomersTable = (props) => {
@@ -53,6 +54,18 @@ export const CustomersTable = (props) => {
 
     fetchUsers();
   }, []);
+
+  const handleDelete = async (customerId) => {
+    try {
+      const usersCollection = collection(firestore, "users");
+      const userDocRef = doc(usersCollection, customerId);
+      // Delete the customer from Firebase
+      await deleteDoc(userDocRef);
+      router.reload();
+    } catch (error) {
+      console.error("Error deleting customer:", error);
+    }
+  };
 
   const selectedSome = selected.length > 0 && selected.length < items.length;
   const selectedAll = items.length > 0 && selected.length === items.length;
@@ -124,6 +137,17 @@ export const CustomersTable = (props) => {
                     <TableCell>{customer.email}</TableCell>
                     <TableCell>{customer?.address}</TableCell>
                     <TableCell>{customer?.status}</TableCell>
+                    <TableCell>
+                      <Button
+                        style={{ backgroundColor: "red", color: "white", border: "none" }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDelete(customer.id);
+                        }}
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
                     {/* <TableCell>{createdAt}</TableCell> */}
                   </TableRow>
                 );

@@ -80,9 +80,10 @@ export const AccountProfileDetails = ({ id }) => {
         updated_time: new Date().toLocaleTimeString(),
         ...values,
       });
+
       toast.info("new ordered saved successfully");
       setLoading(false);
-      router.push("/orders");
+      router.push(`/update_order/${result.id}`);
     } catch (error) {
       setLoading(false);
       console.error("Error adding data: ", error);
@@ -90,7 +91,7 @@ export const AccountProfileDetails = ({ id }) => {
   }, []);
 
   return (
-    <form autoComplete="off" noValidate onSubmit={handleSubmit}>
+    <form autoComplete="off" onSubmit={handleSubmit}>
       <Card>
         <CardContent sx={{ pt: 0 }}>
           <Box sx={{ m: -1.5 }}>
@@ -525,7 +526,6 @@ export const AccountProfileDetails = ({ id }) => {
                   name="lat"
                   onChange={handleChange}
                   required
-                  type="number"
 
                   // value={values.country}
                 />
@@ -540,7 +540,6 @@ export const AccountProfileDetails = ({ id }) => {
                   name="lng"
                   onChange={handleChange}
                   required
-                  type="number"
 
                   // value={values.country}
                 />
