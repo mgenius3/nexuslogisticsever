@@ -313,7 +313,7 @@ const UserProfile = () => {
           /> */}
           <br />
 
-          <LocationMap address={"Atlanta,United States"}></LocationMap>
+          <LocationMap address={user?.location}></LocationMap>
         </Container>
       ) : (
         <p>{statemessage}</p>
