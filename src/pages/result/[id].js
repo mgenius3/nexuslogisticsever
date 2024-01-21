@@ -192,14 +192,14 @@ const UserProfile = () => {
               <Typography variant="subtitle1">Shipment Mode:</Typography>
               <Typography variant="subtitle2">{userData?.shipment_mode}</Typography>
             </Grid>
-            <Grid xs={12} lg={4} md={6}>
+            {/* <Grid xs={12} lg={4} md={6}>
               <Typography variant="subtitle1">Carrier Reference No.:</Typography>
               <Typography variant="subtitle2">{userData?.carrier_reference_no}</Typography>
-            </Grid>
-            <Grid xs={12} lg={4} md={6}>
+            </Grid> */}
+            {/* <Grid xs={12} lg={4} md={6}>
               <Typography variant="subtitle1">Product:</Typography>
               <Typography variant="subtitle2">{userData?.product}</Typography>
-            </Grid>
+            </Grid> */}
             <Grid xs={12} lg={4} md={6}>
               <Typography variant="subtitle1">Quantity:</Typography>
               <Typography variant="subtitle2">{userData?.quantity}</Typography>

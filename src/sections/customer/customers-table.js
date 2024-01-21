@@ -136,7 +136,10 @@ export const CustomersTable = (props) => {
                     <TableCell>{customer.id}</TableCell>
                     <TableCell>{customer.email}</TableCell>
                     <TableCell>{customer?.address}</TableCell>
-                    <TableCell>{customer?.status}</TableCell>
+                    <TableCell>
+                      <small> {customer?.updated_date} </small>{" "}
+                      <small>{customer?.updated_time}</small>
+                    </TableCell>
                     <TableCell>
                       <Button
                         style={{ backgroundColor: "red", color: "white", border: "none" }}

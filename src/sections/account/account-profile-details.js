@@ -67,7 +67,7 @@ export const AccountProfileDetails = ({ id }) => {
     console.log(values);
   };
 
-  const handleSubmit = useCallback(async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     console.log(values);
@@ -88,7 +88,7 @@ export const AccountProfileDetails = ({ id }) => {
       setLoading(false);
       console.error("Error adding data: ", error);
     }
-  }, []);
+  };
 
   return (
     <form autoComplete="off" onSubmit={handleSubmit}>
@@ -267,7 +267,7 @@ export const AccountProfileDetails = ({ id }) => {
                   // value={values.firstName}
                 />
               </Grid>
-              <Grid xs={12} md={6}>
+              {/* <Grid xs={12} md={6}>
                 <TextField
                   fullWidth
                   helperText="Product"
@@ -276,7 +276,7 @@ export const AccountProfileDetails = ({ id }) => {
                   required
                   // value={values.lastName}
                 />
-              </Grid>
+              </Grid> */}
               <Grid xs={12} md={6}>
                 <TextField
                   fullWidth
@@ -440,7 +440,7 @@ export const AccountProfileDetails = ({ id }) => {
                 />
               </Grid>
 
-              <Grid xs={12} md={6}>
+              {/* <Grid xs={12} md={6}>
                 <TextField
                   id="outlined-basic"
                   fullWidth
@@ -451,7 +451,7 @@ export const AccountProfileDetails = ({ id }) => {
                   type="number"
                   // value={values.country}
                 />
-              </Grid>
+              </Grid> */}
 
               <Grid xs={12} md={6}>
                 <TextField

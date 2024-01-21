@@ -85,30 +85,26 @@ export const AccountProfileDetails = ({ id }) => {
     }));
   };
 
-  const handleSubmit = useCallback(
-    async (event) => {
-      event.preventDefault();
-      setLoading(true);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
 
-      try {
-        const docRef = doc(firestore, "users", id); // Replace with the actual user ID
-        await updateDoc(docRef, {
-          updated_date: new Date().toLocaleDateString(),
-          updated_time: new Date().toLocaleTimeString(),
-          ...values,
-        });
+    try {
+      const docRef = doc(firestore, "users", id); // Replace with the actual user ID
+      await updateDoc(docRef, {
+        updated_date: new Date().toLocaleDateString(),
+        updated_time: new Date().toLocaleTimeString(),
+        ...values,
+      });
 
-        toast.info("new ordered updated successfully");
-        setLoading(false);
-        router.push("/orders");
-      } catch (error) {
-        setLoading(false);
-        console.error("Error updating data: ", error);
-      }
-    },
-    [values]
-  );
-
+      toast.info("new ordered updated successfully");
+      setLoading(false);
+      router.push("/orders");
+    } catch (error) {
+      setLoading(false);
+      console.error("Error updating data: ", error);
+    }
+  };
   return (
     <form autoComplete="off" noValidate onSubmit={handleSubmit}>
       <Card>
@@ -289,7 +285,7 @@ export const AccountProfileDetails = ({ id }) => {
                   placeholder={values.width}
                 />
               </Grid>
-              <Grid xs={12} md={6}>
+              {/* <Grid xs={12} md={6}>
                 <TextField
                   fullWidth
                   helperText="Product"
@@ -298,7 +294,7 @@ export const AccountProfileDetails = ({ id }) => {
                   required
                   placeholder={values.product}
                 />
-              </Grid>
+              </Grid> */}
               <Grid xs={12} md={6}>
                 <TextField
                   fullWidth
@@ -465,7 +461,7 @@ export const AccountProfileDetails = ({ id }) => {
                 />
               </Grid>
 
-              <Grid xs={12} md={6}>
+              {/* <Grid xs={12} md={6}>
                 <TextField
                   id="outlined-basic"
                   fullWidth
@@ -476,7 +472,7 @@ export const AccountProfileDetails = ({ id }) => {
                   type="number"
                   placeholder={values.carrier_reference_no}
                 />
-              </Grid>
+              </Grid> */}
 
               <Grid xs={12} md={6}>
                 <TextField
