@@ -98,7 +98,7 @@ export const CustomersTable = (props) => {
                 <TableCell>ID</TableCell>
                 <TableCell>Email</TableCell>
                 <TableCell>Address</TableCell>
-                <TableCell>Status</TableCell>
+                <TableCell>Modified</TableCell>
                 {/* <TableCell>Signed Up</TableCell> */}
               </TableRow>
             </TableHead>
@@ -133,9 +133,15 @@ export const CustomersTable = (props) => {
                         <Typography variant="subtitle2">{customer.name}</Typography>
                       </Stack>
                     </TableCell>
-                    <TableCell>{customer.id}</TableCell>
-                    <TableCell>{customer.email}</TableCell>
-                    <TableCell>{customer?.address}</TableCell>
+                    <TableCell>
+                      <small>{customer.id} </small>
+                    </TableCell>
+                    <TableCell>
+                      <small>{customer.email} </small>
+                    </TableCell>
+                    <TableCell>
+                      <small>{customer?.address}</small>
+                    </TableCell>
                     <TableCell>
                       <small> {customer?.updated_date} </small>{" "}
                       <small>{customer?.updated_time}</small>
