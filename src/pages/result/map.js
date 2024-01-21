@@ -11,7 +11,7 @@ const GoogleMapComponent = ({ center, zoom, markers }) => {
   return (
     <LoadScript googleMapsApiKey="AIzaSyCzZeDcEfwCdXSoameCC6SqZeJdrYooDp8">
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={zoom}>
-        {markers.map((marker, index) => (
+        {markers?.map((marker, index) => (
           <Marker key={index} position={marker.position} />
         ))}
       </GoogleMap>
