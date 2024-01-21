@@ -23,6 +23,7 @@ import {
 import styles from "./styles.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LocationMap from "./map";
 
 const UserProfile = () => {
   const router = useRouter();
@@ -305,12 +306,14 @@ const UserProfile = () => {
             <Divider style={dividerStyle} />
           </Grid>
 
-          <GoogleMapComponent
+          {/* <GoogleMapComponent
             center={{ lat: Number(userData.lat), lng: Number(userData.lng) }}
             zoom={10}
             markers={mapData}
-          />
+          /> */}
           <br />
+
+          <LocationMap address={"Atlanta,United States"}></LocationMap>
         </Container>
       ) : (
         <p>{statemessage}</p>
