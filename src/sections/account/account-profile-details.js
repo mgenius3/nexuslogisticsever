@@ -517,7 +517,7 @@ export const AccountProfileDetails = ({ id }) => {
                   // value={values.country}
                 />
               </Grid>
-              <Grid xs={12} md={6}>
+              {/* <Grid xs={12} md={6}>
                 <TextField
                   // id="outlined-basic"
                   //
@@ -543,7 +543,7 @@ export const AccountProfileDetails = ({ id }) => {
 
                   // value={values.country}
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
           <ToastContainer />
