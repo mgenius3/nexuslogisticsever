@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { firestore, doc, getDoc } from "../../config/index";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import GoogleMapComponent from "./map";
+// import GoogleMapComponent from "./map";
 import {
   Box,
   Button,
@@ -36,6 +36,7 @@ const UserProfile = () => {
     window.print();
   };
 
+  const [coordinates, setCoordinates] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,12 +46,25 @@ const UserProfile = () => {
 
         if (userDoc.exists()) {
           setUserData(userDoc.data());
-
+          fetchCoord(userDoc.data().location);
           setMapData([
             {
               position: { lat: Number(userDoc.data().lat), lng: Number(userDoc.data().lng.toInt) },
             }, // Example marker data
           ]);
+          console.log("outside");
+          // if (typeof window !== "undefined") {
+          //   console.log("hello");
+
+          //   const geocoder = new window.google.maps.Geocoder();
+          //   geocoder.geocode({ address: userDoc.data().location }, (results, status) => {
+          //     if (status === "OK" && results[0]) {
+          //       const { lat, lng } = results[0].geometry.location;
+          //       console.log(lat(), lng());
+          //       setCoordinates({ lat: lat(), lng: lng() });
+          //     }
+          //   });
+          // }
         } else {
           setStateMessage("User not found");
         }
@@ -64,6 +78,26 @@ const UserProfile = () => {
     }
   }, [id]);
 
+  const fetchCoord = async (address) => {
+    let apiKey = "AIzaSyCzZeDcEfwCdXSoameCC6SqZeJdrYooDp8";
+    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+      address
+    )}&key=${apiKey}`;
+
+    fetch(geocodingUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.results.length > 0) {
+          const { lat, lng } = data.results[0].geometry.location;
+          setCoordinates({ lat: lat, lng: lng });
+          console.log(`Latitude: ${lat}, Longitude: ${lng}`);
+        } else {
+          console.error("No results found");
+        }
+      })
+      .catch((error) => console.error("Geocoding error:", error));
+  };
+
   const dividerStyle = {
     height: "5px", // Adjust the height to increase thickness
     backgroundColor: "gray", // Adjust the color as needed
@@ -71,9 +105,13 @@ const UserProfile = () => {
   };
 
   const copyIdToClipboard = () => {
-    navigator.clipboard.writeText(id);
-    // You may also want to provide some visual feedback to the user that the ID has been copied
-    toast.info(`copied`);
+    const textArea = document.createElement("textarea");
+    textArea.value = id;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+    toast.info("Copied");
   };
 
   return (
@@ -313,7 +351,9 @@ const UserProfile = () => {
           /> */}
           <br />
 
-          <LocationMap address={user?.location}></LocationMap>
+          <LocationMap coordinates={coordinates}></LocationMap>
+          <br />
+          <ToastContainer />
         </Container>
       ) : (
         <p>{statemessage}</p>

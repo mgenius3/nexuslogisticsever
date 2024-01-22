@@ -30,23 +30,24 @@ const containerStyle = {
   height: "400px",
 };
 
-const LocationMap = ({ address }) => {
-  const [coordinates, setCoordinates] = useState(null);
+const LocationMap = ({ coordinates }) => {
+  // let add = address;
+  // const [coordinates, setCoordinates] = useState(null);
 
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.google) {
-      // Your code using window.google.maps
-      // Fetch coordinates using the Google Geocoding API
+  // useEffect(() => {
+  //   if (typeof window !== "undefined" && window.google) {
+  //     // Your code using window.google.maps
+  //     // Fetch coordinates using the Google Geocoding API
 
-      const geocoder = new window.google.maps.Geocoder();
-      geocoder.geocode({ address }, (results, status) => {
-        if (status === "OK" && results[0]) {
-          const { lat, lng } = results[0].geometry.location;
-          setCoordinates({ lat: lat(), lng: lng() });
-        }
-      });
-    }
-  }, [address]);
+  //     const geocoder = new window.google.maps.Geocoder();
+  //     geocoder.geocode({ address: String(add) }, (results, status) => {
+  //       if (status === "OK" && results[0]) {
+  //         const { lat, lng } = results[0].geometry.location;
+  //         setCoordinates({ lat: lat(), lng: lng() });
+  //       }
+  //     });
+  //   }
+  // });
 
   return (
     <LoadScript googleMapsApiKey="AIzaSyCzZeDcEfwCdXSoameCC6SqZeJdrYooDp8">
